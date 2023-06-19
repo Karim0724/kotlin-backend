@@ -10,3 +10,4 @@ pluginManagement {
 }
 //include("hw1")
 include("kotlin-backend-api-v1-jackson")
+include("kotlin-backend-common")
