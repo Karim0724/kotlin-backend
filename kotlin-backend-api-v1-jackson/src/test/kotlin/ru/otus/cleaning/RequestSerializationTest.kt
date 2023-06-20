@@ -14,8 +14,8 @@ class RequestSerializationTest {
     private val orderCreateResponse = OrderCreateResponse(
         requestId = UUID.randomUUID().toString(),
         order = OrderResponseObject(
-            userId = BigDecimal(1),
-            companyId = BigDecimal(1),
+            userId = "1",
+            companyId = "1",
             address = "Москва, ул Шверника 1к2",
             dateTime = "2011-12-03T10:15:30+01:00"
         ),
@@ -30,8 +30,8 @@ class RequestSerializationTest {
         val json = apiV1Mapper.writeValueAsString(orderCreateResponse)
 
         // then
-        assertContains(json, Regex("\"userId\":\\s*${orderCreateResponse.order?.userId}"))
-        assertContains(json, Regex("\"companyId\":\\s*${orderCreateResponse.order?.companyId}"))
+        assertContains(json, Regex("\"userId\":\\s*\"${orderCreateResponse.order?.userId}\""))
+        assertContains(json, Regex("\"companyId\":\\s*\"${orderCreateResponse.order?.companyId}\""))
         assertContains(json, Regex("\"address\":\\s*\"${orderCreateResponse.order?.address}\""))
         assertContains(json, Regex("\"responseType\":\\s*\"${orderCreateResponse.responseType}\""))
         assertContains(json, Regex("\"dateTime\":\\s*\"2011-12-03T10:15:30\\+01:00\""))

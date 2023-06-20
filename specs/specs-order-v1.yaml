@@ -163,10 +163,10 @@ components:
 
 
     UserId:
-      type: number
+      type: string
       description: Идентификатор пользователя
     CompanyId:
-      type: number
+      type: string
       description: Идентификатор компании
     Address:
       type: string
@@ -175,7 +175,7 @@ components:
       type: string
       description: Дата-время
     OrderId:
-      type: number
+      type: string
       description: Иденификатор заказа
 
 

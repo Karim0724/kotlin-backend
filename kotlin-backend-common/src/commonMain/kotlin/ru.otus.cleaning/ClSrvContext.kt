@@ -20,5 +20,6 @@ data class ClSrvContext(
     var requestId: ClSrvRequestId = ClSrvRequestId.NONE,
     var timeStart: Instant = Instant.NONE,
     var orderRequest: ClSrvOrder = ClSrvOrder(),
-    var ordersResponse: MutableList<ClSrvOrder> = mutableListOf(),
+    var orderResponse: ClSrvOrder = ClSrvOrder(),
+    var ordersResponse: MutableList<ClSrvOrder> = mutableListOf()
 )

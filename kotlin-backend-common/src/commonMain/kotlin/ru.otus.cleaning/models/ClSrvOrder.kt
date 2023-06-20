@@ -4,9 +4,9 @@ import kotlinx.datetime.Instant
 import ru.otus.cleaning.NONE
 
 data class ClSrvOrder(
-    val clSrvUserId: ClSrvUserId = ClSrvUserId.NONE,
-    val clSrvCompanyId: ClSrvCompanyId = ClSrvCompanyId.NONE,
-    val clSrvOrderId: ClSrvOrderId = ClSrvOrderId.NONE,
-    val clSrvDateTime: Instant = Instant.NONE,
-    val clSrvAddress: String = ""
+    val userId: ClSrvUserId = ClSrvUserId.NONE,
+    val companyId: ClSrvCompanyId = ClSrvCompanyId.NONE,
+    val id: ClSrvOrderId = ClSrvOrderId.NONE,
+    val dateTime: Instant = Instant.NONE,
+    val address: String = ""
 )
