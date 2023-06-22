@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = "ru.otus"
+    group = "ru.otus.cleaning"
     version = "1.0-SNAPSHOT"
 
     repositories {
