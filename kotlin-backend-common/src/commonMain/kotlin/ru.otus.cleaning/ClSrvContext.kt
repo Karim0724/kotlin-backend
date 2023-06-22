@@ -21,5 +21,5 @@ data class ClSrvContext(
     var timeStart: Instant = Instant.NONE,
     var orderRequest: ClSrvOrder = ClSrvOrder(),
     var orderResponse: ClSrvOrder = ClSrvOrder(),
-    var ordersResponse: MutableList<ClSrvOrder> = mutableListOf()
+    val ordersResponse: MutableList<ClSrvOrder> = mutableListOf()
 )
