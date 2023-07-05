@@ -1,0 +1,70 @@
+POST localhost:8080/v1/order/searchByUserId
+Content-Type: application/json
+
+{
+  "requestType": "searchByUserId",
+  "requestId": "cf3fc490-61ea-49f4-8c5c-7c17b58ac795",
+  "debug": {
+    "mode": "stub",
+    "stub": "success"
+  },
+  "order": {
+    "userId" : "1"
+  }
+}
+
+###
+
+POST localhost:8080/v1/order/searchByCompanyId
+Content-Type: application/json
+
+{
+  "requestType": "searchByCompanyId",
+  "requestId": "cf3fc490-61ea-49f4-8c5c-7c17b58ac795",
+  "debug": {
+    "mode": "stub",
+    "stub": "success"
+  },
+  "order": {
+    "companyId" : "1"
+  }
+}
+
+###
+
+POST localhost:8080/v1/order/create
+Content-Type: application/json
+
+{
+  "requestType": "create",
+  "requestId": "cf3fc490-61ea-49f4-8c5c-7c17b58ac795",
+  "debug": {
+    "mode": "stub",
+    "stub": "success"
+  },
+  "order": {
+    "userId": "1",
+    "companyId": "1",
+    "address": "Шверника д1к1 кв 235",
+    "dateTime": "2011-01-03T10:15:30Z"
+  }
+}
+
+###
+
+POST localhost:8080/v1/order/readById
+Content-Type: application/json
+
+{
+  "requestType": "read",
+  "requestId": "cf3fc490-61ea-49f4-8c5c-7c17b58ac795",
+  "debug": {
+    "mode": "stub",
+    "stub": "success"
+  },
+  "order": {
+    "id" : "1"
+  }
+}
+
+

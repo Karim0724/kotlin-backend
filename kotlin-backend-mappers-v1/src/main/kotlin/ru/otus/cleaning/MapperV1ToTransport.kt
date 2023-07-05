@@ -24,6 +24,7 @@ fun ClSrvContext.toTransport(): IResponse = when (val cmd = command) {
 }
 
 fun ClSrvContext.toTransportCreate() = OrderCreateResponse(
+    result = ResponseResult.SUCCESS,
     responseType = "create",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
     errors = this.errors.toTransportErrors(),
@@ -31,6 +32,7 @@ fun ClSrvContext.toTransportCreate() = OrderCreateResponse(
 )
 
 fun ClSrvContext.toTransportRead() = OrderReadResponse(
+    result = ResponseResult.SUCCESS,
     responseType = "read",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
     errors = this.errors.toTransportErrors(),
@@ -38,14 +40,16 @@ fun ClSrvContext.toTransportRead() = OrderReadResponse(
 )
 
 fun ClSrvContext.toTransportSearchByCompanyId() = OrderSearchByCompanyIdResponse(
-    responseType = "search_by_company_id",
+    result = ResponseResult.SUCCESS,
+    responseType = "searchByCompanyId",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
     errors = this.errors.toTransportErrors(),
     orders = ordersResponse.toTransportOrder()
 )
 
 fun ClSrvContext.toTransportSearchByUserId() = OrderSearchByUserIdResponse(
-    responseType = "search_by_user_id",
+    result = ResponseResult.SUCCESS,
+    responseType = "searchByUserId",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
     errors = this.errors.toTransportErrors(),
     orders = ordersResponse.toTransportOrder()
