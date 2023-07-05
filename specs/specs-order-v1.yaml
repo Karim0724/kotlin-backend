@@ -333,8 +333,6 @@ components:
         - success
         - notFound
         - badId
-        - badTitle
-        - badDescription
-        - badVisibility
-        - cannotDelete
-        - badSearchString
+        - badCompanyId
+        - badUserId
+        - badDateTime
