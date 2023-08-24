@@ -22,7 +22,7 @@ import ru.otus.cleaning.models.ClSrvOrderId
 import ru.otus.cleaning.models.ClSrvRequestId
 import ru.otus.cleaning.models.ClSrvUserId
 import ru.otus.cleaning.models.ClSrvWorkMode
-import ru.otus.otuskotlin.marketplace.common.stubs.ClSrvStubs
+import ru.otus.cleaning.stubs.ClSrvStubs
 
 fun ClSrvContext.fromTransport(request: IRequest) = when(request) {
     is OrderCreateRequest -> fromTransport(request)
