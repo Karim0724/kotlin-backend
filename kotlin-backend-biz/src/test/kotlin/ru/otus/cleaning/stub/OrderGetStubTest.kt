@@ -1,27 +1,29 @@
-package ru.otus.cleaning
+package ru.otus.cleaning.stub
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import ru.otus.cleaning.ClSrvContext
+import ru.otus.cleaning.ClSrvProcessor
 import ru.otus.cleaning.models.*
 import ru.otus.cleaning.stubs.ClSrvStubs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class OrderFindByCompanyIdStubTest {
+class OrderGetStubTest {
     private val processor = ClSrvProcessor()
-    private val companyId = "1"
+    private val orderId = "1"
 
     @Test
     fun success() = runTest {
         // given
         val context = ClSrvContext(
-            command = ClSrvCommand.SEARCH_BY_COMPANY_ID,
+            command = ClSrvCommand.READ,
             workMode = ClSrvWorkMode.STUB,
             stubCase = ClSrvStubs.SUCCESS,
             requestId = ClSrvRequestId(id = "1"),
             orderRequest = ClSrvOrder(
-                companyId = ClSrvCompanyId(companyId)
+                id = ClSrvOrderId(orderId)
             )
         )
 
@@ -30,7 +32,7 @@ class OrderFindByCompanyIdStubTest {
 
         // then
         with(context) {
-            assertEquals(expected = companyId, actual = ordersResponse.first().companyId.asString())
+            assertEquals(expected = orderId, actual = orderResponse.id.asString())
         }
     }
 
@@ -38,12 +40,12 @@ class OrderFindByCompanyIdStubTest {
     fun notFound() = runTest {
         // given
         val context = ClSrvContext(
-            command = ClSrvCommand.SEARCH_BY_COMPANY_ID,
+            command = ClSrvCommand.READ,
             workMode = ClSrvWorkMode.STUB,
             stubCase = ClSrvStubs.NOT_FOUND,
             requestId = ClSrvRequestId(id = "1"),
             orderRequest = ClSrvOrder(
-                companyId = ClSrvCompanyId(companyId)
+                id = ClSrvOrderId(orderId)
             )
         )
 
@@ -53,28 +55,6 @@ class OrderFindByCompanyIdStubTest {
         // then
         with(context) {
             assertEquals(expected = ClSrvStubs.NOT_FOUND.name, actual = errors.first().code)
-        }
-    }
-
-    @Test
-    fun badCompanyId() = runTest {
-        // given
-        val context = ClSrvContext(
-            command = ClSrvCommand.SEARCH_BY_COMPANY_ID,
-            workMode = ClSrvWorkMode.STUB,
-            stubCase = ClSrvStubs.BAD_COMPANY_ID,
-            requestId = ClSrvRequestId(id = "1"),
-            orderRequest = ClSrvOrder(
-                companyId = ClSrvCompanyId(companyId)
-            )
-        )
-
-        // when
-        processor.process(context)
-
-        // then
-        with(context) {
-            assertEquals(expected = ClSrvStubs.BAD_COMPANY_ID.name, actual = errors.first().code)
         }
     }
 }

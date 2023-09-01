@@ -1,9 +1,11 @@
-package ru.otus.cleaning
+package ru.otus.cleaning.stub
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
 import org.junit.Test
+import ru.otus.cleaning.ClSrvContext
+import ru.otus.cleaning.ClSrvProcessor
 import ru.otus.cleaning.models.*
 import ru.otus.cleaning.stubs.ClSrvStubs
 import kotlin.test.assertEquals
