@@ -7,7 +7,7 @@ import ru.otus.cleaning.models.ClSrvOrder
 import ru.otus.cleaning.models.ClSrvRequestId
 import ru.otus.cleaning.models.ClSrvState
 import ru.otus.cleaning.models.ClSrvWorkMode
-import ru.otus.otuskotlin.marketplace.common.stubs.ClSrvStubs
+import ru.otus.cleaning.stubs.ClSrvStubs
 
 data class ClSrvContext(
     var command: ClSrvCommand = ClSrvCommand.NONE,
@@ -21,5 +21,8 @@ data class ClSrvContext(
     var timeStart: Instant = Instant.NONE,
     var orderRequest: ClSrvOrder = ClSrvOrder(),
     var orderResponse: ClSrvOrder = ClSrvOrder(),
-    val ordersResponse: MutableList<ClSrvOrder> = mutableListOf()
+    val ordersResponse: MutableList<ClSrvOrder> = mutableListOf(),
+
+    var orderValidating: ClSrvOrder = ClSrvOrder(),
+    var orderValidated: ClSrvOrder = ClSrvOrder()
 )

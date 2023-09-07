@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.marketplace.common.stubs
+package ru.otus.cleaning.stubs
 
 enum class ClSrvStubs {
     NONE,

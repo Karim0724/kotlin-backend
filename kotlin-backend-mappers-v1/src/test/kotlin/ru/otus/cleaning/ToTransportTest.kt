@@ -15,7 +15,7 @@ import ru.otus.cleaning.models.ClSrvRequestId
 import ru.otus.cleaning.models.ClSrvState
 import ru.otus.cleaning.models.ClSrvUserId
 import ru.otus.cleaning.models.ClSrvWorkMode
-import ru.otus.otuskotlin.marketplace.common.stubs.ClSrvStubs
+import ru.otus.cleaning.stubs.ClSrvStubs
 import java.util.*
 import kotlin.test.assertEquals
 

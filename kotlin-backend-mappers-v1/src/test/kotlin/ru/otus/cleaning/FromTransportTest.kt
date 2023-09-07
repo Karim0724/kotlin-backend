@@ -14,7 +14,7 @@ import ru.otus.cleaning.api.v1.models.OrderSearchByUserIdObject
 import ru.otus.cleaning.api.v1.models.OrderSearchByUserIdRequest
 import ru.otus.cleaning.models.ClSrvCommand
 import ru.otus.cleaning.models.ClSrvWorkMode
-import ru.otus.otuskotlin.marketplace.common.stubs.ClSrvStubs
+import ru.otus.cleaning.stubs.ClSrvStubs
 import java.util.*
 import kotlin.test.assertEquals
 
