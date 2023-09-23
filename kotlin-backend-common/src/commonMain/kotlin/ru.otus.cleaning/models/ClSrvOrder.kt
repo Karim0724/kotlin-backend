@@ -8,5 +8,6 @@ data class ClSrvOrder(
     var companyId: ClSrvCompanyId = ClSrvCompanyId.NONE,
     var id: ClSrvOrderId = ClSrvOrderId.NONE,
     var dateTime: Instant = Instant.NONE,
-    var address: String = ""
+    var address: String = "",
+    var lock: ClSrvOrderLock = ClSrvOrderLock.NONE
 )

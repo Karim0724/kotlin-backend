@@ -1,13 +1,17 @@
 package ru.otus.cleaning
 
 import operation
+import ru.otus.cleaning.general.initRepo
+import ru.otus.cleaning.general.prepareResult
 import ru.otus.cleaning.models.ClSrvCommand
 import ru.otus.cleaning.models.ClSrvOrderId
+import ru.otus.cleaning.repo.*
 import ru.otus.cleaning.validation.finishOrderValidation
 import ru.otus.cleaning.validation.validation
 import ru.otus.cleaning.workers.initStatus
 import ru.otus.cleaning.workers.stubCreateSuccess
 import ru.otus.cleaning.workers.stubNoCase
+import ru.otus.otuskotlin.marketplace.cor.chain
 import ru.otus.otuskotlin.marketplace.cor.rootChain
 import ru.otus.otuskotlin.marketplace.cor.worker
 import stubFindByCompanyIdSuccess
@@ -24,12 +28,13 @@ import validateDatetimeNotEmpty
 import validateIdFormat
 import validateUserIdFormat
 
-class ClSrvProcessor {
-    suspend fun process(ctx: ClSrvContext) = BusinessChain.exec(ctx)
+class ClSrvProcessor(private val settings: ClSrvCorSettings = ClSrvCorSettings.NONE) {
+    suspend fun process(ctx: ClSrvContext) = BusinessChain.exec(ctx.apply { this.settings = this@ClSrvProcessor.settings } )
 
     companion object {
         private val BusinessChain = rootChain {
             initStatus("Инициализация контекста")
+            initRepo("Инициализация репозитория")
             operation("Создание заказа", ClSrvCommand.CREATE) {
                 stubs(title = "Обработка стабов") {
                     stubCreateSuccess("Имитация создания заказа")
@@ -48,6 +53,12 @@ class ClSrvProcessor {
                     validateDatetimeNotEmpty("Проверка наличия времени заказа")
                     finishOrderValidation("Завершение валидации")
                 }
+                chain {
+                    title = "Логика сохранения"
+                    repoPrepare("Подготовка объекта для сохранения")
+                    repoCreate("Создание заказа в БД")
+                }
+                prepareResult("Подготовка результата")
             }
 
             operation("Получение заказа", ClSrvCommand.READ) {
@@ -61,6 +72,12 @@ class ClSrvProcessor {
                     validateIdFormat("Проверка формата идентификатора пользователя")
                     finishOrderValidation("Завершение валидации")
                 }
+                chain {
+                    title = "Логика получения заказа"
+                    repoPrepare("Подготовка объекта для получения")
+                    repoRead("Получение заказа в БД")
+                }
+                prepareResult("Подготовка результата")
             }
 
             operation("Получение заказов компании", ClSrvCommand.SEARCH_BY_COMPANY_ID) {
@@ -75,6 +92,12 @@ class ClSrvProcessor {
                     validateCompanyIdFormat("Проверка формата идентификатора компании")
                     finishOrderValidation("Завершение валидации")
                 }
+                chain {
+                    title = "Логика получения заказа по компании"
+                    repoPrepare("Подготовка объекта для получения")
+                    repoSearchByCompanyId("Получение заказа из БД по идентификатору компании")
+                }
+                prepareResult("Подготовка результата")
             }
 
             operation("Получение заказов пользователя", ClSrvCommand.SEARCH_BY_USER_ID) {
@@ -89,6 +112,12 @@ class ClSrvProcessor {
                     validateUserIdFormat("Проверка формата идентификатора пользователя")
                     finishOrderValidation("Завершение валидации")
                 }
+                chain {
+                    title = "Логика получения заказа по пользователю"
+                    repoPrepare("Подготовка объекта для получения")
+                    repoSearchByUserId("Получение заказа из БД по идентификатору пользователя")
+                }
+                prepareResult("Подготовка результата")
             }
         }.build()
     }
