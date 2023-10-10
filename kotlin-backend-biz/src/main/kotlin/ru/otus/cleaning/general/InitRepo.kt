@@ -1,8 +1,8 @@
 package ru.otus.cleaning.general
 
-import errorAdministration
-import fail
+import ru.otus.cleaning.helpers.errorAdministration
 import ru.otus.cleaning.ClSrvContext
+import ru.otus.cleaning.helpers.fail
 import ru.otus.cleaning.models.ClSrvWorkMode
 import ru.otus.cleaning.repo.IOrderRepository
 import ru.otus.otuskotlin.marketplace.cor.ICorChainDsl

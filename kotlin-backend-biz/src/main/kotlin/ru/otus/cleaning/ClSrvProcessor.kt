@@ -6,8 +6,7 @@ import ru.otus.cleaning.general.prepareResult
 import ru.otus.cleaning.models.ClSrvCommand
 import ru.otus.cleaning.models.ClSrvOrderId
 import ru.otus.cleaning.repo.*
-import ru.otus.cleaning.validation.finishOrderValidation
-import ru.otus.cleaning.validation.validation
+import ru.otus.cleaning.validation.*
 import ru.otus.cleaning.workers.initStatus
 import ru.otus.cleaning.workers.stubCreateSuccess
 import ru.otus.cleaning.workers.stubNoCase
@@ -22,11 +21,6 @@ import stubValidationBadDateTime
 import stubValidationBadUserId
 import stubValidationNotFound
 import stubs
-import validateAddressNotEmpty
-import validateCompanyIdFormat
-import validateDatetimeNotEmpty
-import validateIdFormat
-import validateUserIdFormat
 
 class ClSrvProcessor(private val settings: ClSrvCorSettings = ClSrvCorSettings.NONE) {
     suspend fun process(ctx: ClSrvContext) = BusinessChain.exec(ctx.apply { this.settings = this@ClSrvProcessor.settings } )

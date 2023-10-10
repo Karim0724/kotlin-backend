@@ -9,6 +9,8 @@ import kotlin.test.*
 abstract class RepoOrderCreateTest {
     abstract val orderRepository: IOrderRepository
 
+    protected open val lockNew: ClSrvOrderLock = ClSrvOrderLock("20000000-0000-0000-0000-000000000002")
+
     private val createOrder = ClSrvOrder(
         userId = ClSrvUserId(id = "1"),
         companyId = ClSrvCompanyId(id = "1"),

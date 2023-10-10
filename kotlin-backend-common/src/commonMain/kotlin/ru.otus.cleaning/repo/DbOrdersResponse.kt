@@ -7,4 +7,8 @@ data class DbOrdersResponse(
     override val data: List<ClSrvOrder>?,
     override val errors: List<ClSrvError> = emptyList(),
     override val isSuccess: Boolean
-) : IDbResponse<List<ClSrvOrder>>
+) : IDbResponse<List<ClSrvOrder>> {
+    companion object {
+        fun error(error: ClSrvError) = DbOrdersResponse(null, listOf(error), false,)
+    }
+}

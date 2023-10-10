@@ -1,12 +1,21 @@
 package ru.otus.cleaning
 
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import ru.otus.cleaning.models.ClSrvCompanyId
-import ru.otus.cleaning.models.ClSrvOrder
-import ru.otus.cleaning.models.ClSrvOrderId
-import ru.otus.cleaning.models.ClSrvUserId
+import ru.otus.cleaning.models.*
+import java.util.*
 
 object ClSrvStub {
+    fun get() = ClSrvOrder(
+        userId = ClSrvUserId(id = "1"),
+        companyId = ClSrvCompanyId(id = "1"),
+        id = ClSrvOrderId(id = "1"),
+        dateTime = Clock.System.now(),
+        address = "Ул Шверника 1к1 кв 235",
+        lock = ClSrvOrderLock(id = UUID.randomUUID().toString())
+
+    )
+
     fun createOrderStub(clSrvRequest: ClSrvOrder): ClSrvOrder {
         return ClSrvOrder(
             userId = ClSrvUserId(id = clSrvRequest.userId.asString()),

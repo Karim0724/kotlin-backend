@@ -4,8 +4,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
 import ru.otus.cleaning.ClSrvContext
+import ru.otus.cleaning.ClSrvCorSettings
 import ru.otus.cleaning.ClSrvProcessor
 import ru.otus.cleaning.models.*
+import ru.otus.cleaning.repo.stub.OrderRepoStub
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -15,7 +17,7 @@ class OrderSearchByCompanyIdValidationTest {
         command = ClSrvCommand.SEARCH_BY_COMPANY_ID
         workMode = ClSrvWorkMode.TEST
     }
-    private val processor = ClSrvProcessor()
+    private val processor = ClSrvProcessor(ClSrvCorSettings(repoTest = OrderRepoStub()))
 
     @Test
     fun incorrectCompanyId() = runTest {
