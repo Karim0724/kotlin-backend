@@ -5,9 +5,12 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import ru.otus.cleaning.ClSrvContext
+import ru.otus.cleaning.ClSrvCorSettings
 import ru.otus.cleaning.ClSrvProcessor
 import ru.otus.cleaning.NONE
 import ru.otus.cleaning.models.*
+import ru.otus.cleaning.repo.IOrderRepository
+import ru.otus.cleaning.repo.stub.OrderRepoStub
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -18,7 +21,7 @@ class OrderCreateValidationTest {
         command = ClSrvCommand.CREATE
         workMode = ClSrvWorkMode.TEST
     }
-    private val processor = ClSrvProcessor()
+    private val processor = ClSrvProcessor(ClSrvCorSettings(repoTest = OrderRepoStub()))
 
     @Test
     fun incorrectAddress() = runTest {
