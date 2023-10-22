@@ -51,7 +51,7 @@ class OrderCreateValidationTest {
         // given
         val orderWithBadCompanyId = ClSrvOrder(
             userId = ClSrvUserId(id = "1"),
-            companyId = ClSrvCompanyId(id = "-1"),
+            companyId = ClSrvCompanyId(id = ""),
             id = ClSrvOrderId(id = "1"),
             dateTime = Clock.System.now(),
             address = "ул Швеника"

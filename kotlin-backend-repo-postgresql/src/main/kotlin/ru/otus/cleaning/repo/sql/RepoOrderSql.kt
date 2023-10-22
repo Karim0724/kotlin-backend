@@ -38,7 +38,9 @@ class RepoOrderSql(
         return OrderTable.from(res)
     }
 
-    override suspend fun createOrder(dbOrderRequest: DbOrderRequest): DbOrderResponse = transactionWrapper { DbOrderResponse.success(dbOrderRequest.order) }
+    override suspend fun createOrder(dbOrderRequest: DbOrderRequest): DbOrderResponse = transactionWrapper {
+        DbOrderResponse.success(createOrder(dbOrderRequest.order))
+    }
 
     override suspend fun readOrder(dbOrderIdRequest: DbOrderIdRequest): DbOrderResponse = transactionWrapper {
         val res = OrderTable.select {

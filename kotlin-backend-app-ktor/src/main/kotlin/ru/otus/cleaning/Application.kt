@@ -14,12 +14,14 @@ import io.ktor.server.plugins.defaultheaders.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.slf4j.event.Level
-import v1Order
+import ru.otus.cleaning.config.ClSrvApplicationSetting
+import ru.otus.cleaning.plugins.initAppSettings
+import ru.otus.cleaning.v1.v1Order
 
-fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args = args)
+fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
 
-fun Application.moduleJvm() {
-    val processor = ClSrvProcessor()
+fun Application.moduleJvm(appSettings: ClSrvApplicationSetting = initAppSettings()) {
+    val processor = ClSrvProcessor(appSettings.corSettings)
 
     install(CachingHeaders)
     install(DefaultHeaders)

@@ -1,0 +1,40 @@
+version: '3'
+services:
+  psql:
+    image: postgres
+    container_name: postgresql
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: cleaner
+      POSTGRES_DB: cleaning
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: "kotlin-backend-app-ktor:0.0.1"
+    container_name: app-ktor
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      DB_TYPE_PROD: postgres
+      DB_USER: cleaner
+      DB_PASSWORD: password
+      DB_SCHEMA: cleaning
+      DB_URL: jdbc:postgresql://psql:5432/cleaning
+    depends_on:
+      - psql
+
+volumes:
+  postgres_data:
+

@@ -10,8 +10,7 @@ import ru.otus.otuskotlin.marketplace.cor.worker
 fun ICorChainDsl<ClSrvContext>.validateUserIdFormat(title: String) = worker {
     this.title = title
     on {
-        val id = this.orderValidating.userId.asString().toLongOrNull()
-        this.orderValidating.userId == ClSrvUserId.NONE || id == null || id <= 0
+        this.orderValidating.userId.asString().isEmpty()
     }
     handle {
         fail(
@@ -19,7 +18,7 @@ fun ICorChainDsl<ClSrvContext>.validateUserIdFormat(title: String) = worker {
                 code = "badFormat",
                 group = "validation",
                 field = "userId",
-                message = "Иденификатор клиента должен быть целочисленым"
+                message = "Иденификатор клиента должен быть не пустым"
             )
         )
     }

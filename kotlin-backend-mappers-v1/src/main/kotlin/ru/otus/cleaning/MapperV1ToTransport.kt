@@ -58,7 +58,6 @@ fun ClSrvContext.toTransportSearchByUserId() = OrderSearchByUserIdResponse(
 fun List<ClSrvOrder>.toTransportOrder(): List<OrderResponseObject>? = this
     .map { it.toTransportOrder() }
     .toList()
-    .takeIf { it.isNotEmpty() }
 
 private fun ClSrvOrder.toTransportOrder(): OrderResponseObject = OrderResponseObject(
     id = id.takeIf { it != ClSrvOrderId.NONE }?.asString(),

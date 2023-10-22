@@ -39,6 +39,7 @@ dependencies {
     implementation(ktor("locations"))
     implementation(ktor("call-logging"))
     implementation(ktor("jackson", "serialization"))
+    implementation("io.ktor:ktor-server-config-yaml")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
@@ -47,9 +48,20 @@ dependencies {
     implementation(project(":kotlin-backend-common"))
     implementation(project(":kotlin-backend-mappers-v1"))
     implementation(project(":kotlin-backend-biz"))
+    implementation(project(":kotlin-backend-repo-postgresql"))
+    implementation(project(":kotlin-backend-repo-stubs"))
+    implementation(project(":kotlin-backend-repo-in-memory"))
 
     // test
     implementation(kotlin("test-junit"))
     implementation(ktor("test-host"))
     implementation(ktor("content-negotiation", prefix = "client-"))
+}
+
+ktor {
+    docker {
+        localImageName.set(project.name)
+        imageTag.set("0.0.1")
+        jreVersion.set(io.ktor.plugin.features.JreVersion.JRE_17)
+    }
 }
