@@ -10,6 +10,6 @@ fun ICorChainDsl<ClSrvContext>.validation(
     block: ICorChainDsl<ClSrvContext>.() -> Unit
 ) = chain {
     this.title = title
-    on { this.state == ClSrvState.RUNNING}
+    on { this.state == ClSrvState.RUNNING }
     block()
 }

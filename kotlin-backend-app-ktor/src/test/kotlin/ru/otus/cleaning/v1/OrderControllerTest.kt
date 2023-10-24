@@ -50,7 +50,6 @@ class OrderControllerTest {
         assertEquals(expected = COMPANY_ID, actual = responseBody.order!!.companyId)
         assertEquals(expected = ORDER_DATE_TIME, actual = responseBody.order!!.dateTime)
         assertEquals(expected = ADDRESS, actual = responseBody.order!!.address)
-
     }
 
     @Test
